@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        main {
+            padding: 2rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Courses List</h1>
+    </header>
+    <main>
+        <h2>Available Courses</h2>
+        <ul id="courses-list">
+            <li>Loading courses...</li>
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2025 Express Demo App. All rights reserved.</p>
+    </footer>
+    <script>
+        // Fetch courses from the API and display them
+        async function fetchCourses() {
+            const response = await fetch('/api/courses');
+            const courses = await response.json();
+            const coursesList = document.getElementById('courses-list');
+            coursesList.innerHTML = ''; // Clear the loading message
+
+            if (courses.length === 0) {
+                coursesList.innerHTML = '<li>No courses available.</li>';
+                return;
+            }
+
+            courses.forEach(course => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${course.name}</strong> by ${course.author} <br>
+                    <em>${course.about}</em> <br>
+                    <small>Launch Date: ${course.launchDate} | Duration: ${course.duration} hours | Level: ${course.level} | Rating: ${course.rating}</small>
+                `;
+                coursesList.appendChild(li);
+            });
+        }
+        // Call the function to fetch and display courses
+        fetchCourses();
+    </script>
+</body>
+</html>
