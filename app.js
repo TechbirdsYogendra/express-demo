@@ -1,3 +1,5 @@
+import helmet from "helmet";
+import morgan from "morgan";
 import express from "express";
 import Joi from "joi";
 import log from "./logger.js";
@@ -21,6 +23,26 @@ let app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+// Environment variables
+// This returns 'undefned' by default if NODE_ENV is not set
+// console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+// This returns the development environment by default
+// console.log(`app: ${app.get("env")}`);
+
+// Third-party Middleware function
+// Morgan is a HTTP request logger middleware for Node.js
+// tiny is one of the predefined formats in Morgan
+// For example: :method :url :status :res[content-length] - :response-time ms
+// GET /api/courses 200 1689 - 2.851 ms
+// Environment-based Middleware
+if (app.get("env") === "development") {
+    app.use(morgan("tiny"));
+    console.log("Morgan enabled...");
+  }
+
+// Helmet helps you secure your Express apps by setting various HTTP headers
+app.use(helmet());
 
 // Custom Middleware function
 // app.use((req, res, next) => {
