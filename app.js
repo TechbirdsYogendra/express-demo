@@ -31,7 +31,12 @@ let app = express();
 // Built-in Middleware functions
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Serve static files from the 'public' directory
 app.use(express.static("public"));
+
+// Set the view engine/templating engine to Pug
+app.set("view engine", "pug");
+app.set("views", "./views"); // Default folder for views
 
 // Environment variables
 // This returns 'undefned' by default if NODE_ENV is not set
@@ -71,7 +76,7 @@ console.log("Mail Server: " + config.get("mail.host"));
 //  To set the mail password, we need to set an environment variable
 //  In Linux/Mac: export app_mail_password=your_password
 //  Accessing the mail password from environment variable
-console.log("Mail Password: " + config.get("mail.password")); // This will throw an error if the password is not set in environment variables
+// console.log("Mail Password: " + config.get("mail.password")); // This will throw an error if the password is not set in environment variables
 
 
 // Helmet helps you secure your Express apps by setting various HTTP headers
@@ -90,7 +95,9 @@ app.use(log); // Using the imported logging middleware
 app.use(authenticate); // Using the imported authentication middleware
 
 app.get("/", (req, res) => {
-  res.send(`Hare Krishna Hare Krishna Krishna Krishna Hare Hare \n Hare Rama Hare Rama Rama Rama Hare Hare`);
+  // res.send(`Hare Krishna Hare Krishna Krishna Krishna Hare Hare \n Hare Rama Hare Rama Rama Rama Hare Hare`);
+  // Render the index.pug template and pass data to it
+  res.render("index.pug", { title: "My Express App", message: "Hello there and welcome to my Express app!" });
 });
 
 app.get("/api/courses", (req, res) => {
