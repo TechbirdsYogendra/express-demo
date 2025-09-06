@@ -7,6 +7,7 @@ import log from "./middleware/logger.js";
 import authenticate from "./middleware/authenticator.js";
 import coursesRouter from "./routes/courses.js";
 import homeRouter from "./routes/home.js";
+import postsRouter from "./routes/posts.js";
 
 // Debugging
 // We can enable debug logs by setting the environment variable DEBUG
@@ -26,6 +27,7 @@ app.use(express.static("public"));
 // Routes
 app.use("/api/courses", coursesRouter); // Use the courses router for /api/courses routes
 app.use("/", homeRouter); // Use the home router for the root route
+app.use("/api/posts", postsRouter); // Use the posts router for /posts route
 
 // Set the view engine/templating engine to Pug
 app.set("view engine", "pug");

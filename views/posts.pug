@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    title Posts
+    style.
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f6f9;
+        padding: 20px;
+        margin: 0;
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 25px;
+      }
+      .post {
+        background: #fff;
+        border-left: 6px solid #3498db;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        padding: 15px 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        transition: background 0.2s ease;
+      }
+      .post:hover {
+        background: #f9fcff;
+      }
+      .post h2 {
+        font-size: 18px;
+        margin: 0 0 8px 0;
+        color: #34495e;
+      }
+      .post p {
+        font-size: 14px;
+        color: #555;
+        margin: 0 0 10px 0;
+      }
+      .post small {
+        font-size: 12px;
+        color: #888;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .read-more {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #3498db;
+        color: #fff;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 13px;
+        transition: background 0.2s ease;
+      }
+      .read-more:hover {
+        background: #217dbb;
+      }
+  body
+    h1 Posts
+    each post in posts
+      .post
+        h2= post.title
+        p= post.body
+        small User ID: #{post.userId} | Post ID: #{post.id}
+        a.read-more(href=`/api/posts/${post.id}`) Read More →

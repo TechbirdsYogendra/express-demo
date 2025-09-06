@@ -1,0 +1,89 @@
+doctype html
+html
+  head
+    title= post.title
+    style.
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f6f9;
+        padding: 30px;
+        margin: 0;
+      }
+      .container {
+        max-width: 700px;
+        margin: auto;
+        background: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+      p {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      small {
+        color: #888;
+      }
+      a.back {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 6px 12px;
+        background: #3498db;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+      a.back:hover {
+        background: #217dbb;
+      }
+      .comments {
+        margin-top: 40px;
+      }
+      .comments h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #2c3e50;
+      }
+      .comment {
+        background: #f9fcff;
+        border-left: 4px solid #3498db;
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        border-radius: 6px;
+      }
+      .comment h3 {
+        font-size: 14px;
+        margin: 0 0 5px 0;
+        color: #34495e;
+      }
+      .comment p {
+        font-size: 13px;
+        color: #555;
+        margin: 0 0 5px 0;
+      }
+      .comment small {
+        font-size: 12px;
+        color: #888;
+      }
+  body
+    .container
+      h1= post.title
+      p= post.body
+      small User ID: #{post.userId} | Post ID: #{post.id}
+      br
+      a.back(href="/api/posts") ← Back to Posts
+
+      if comments.length
+        .comments
+          h2 Comments
+          each comment in comments
+            .comment
+              h3= comment.name
+              p= comment.body
+              small By #{comment.email}
