@@ -1,10 +1,18 @@
 import helmet from "helmet";
 import morgan from "morgan";
 import config from "config";
+import debug from "debug";
 import express from "express";
 import Joi from "joi";
 import log from "./logger.js";
 import authenticate from "./authenticator.js";
+
+// Debugging
+// We can enable debug logs by setting the environment variable DEBUG
+// In Linux/Mac: export DEBUG=app:startup,app:db
+// To enable all debug logs for all namespaces, use: export DEBUG=*
+const startupDebugger = debug("app:startup");
+const dbDebugger = debug("app:db");
 
 let courses = [
     { id: 1, name: "Node.js Course", author: "John Doe", about: "Learn the basics of Node.js", launchDate: "2023-01-15", duration: 20, level: "Beginner", rating: 4.5 },
@@ -39,8 +47,14 @@ app.use(express.static("public"));
 // Environment-based Middleware
 if (app.get("env") === "development") {
     app.use(morgan("tiny"));
-    console.log("Morgan enabled...");
+    // console.log("Morgan enabled...");
+    startupDebugger("Morgan enabled...");
   }
+
+// Simulate a database connection
+if (app.get("env") === "development") {
+    dbDebugger("Connected to the database...");
+}
 
 // Configuration
 // Configuration can be set in JSON files in the config folder

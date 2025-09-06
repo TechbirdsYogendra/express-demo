@@ -38,6 +38,25 @@
       }
   }
 
+### 9. debug use cases
+### 9. Debugging the Application:
+- Used the `debug` package for debugging the application.
+- Created two namespaces for debugging:
+   - `app:startup`: For logging startup-related messages (e.g., enabling middleware like Morgan).
+   - `app:db`: For logging database connection messages.
+- Enabled debugging logs using the `DEBUG` environment variable:
+   - To enable specific namespaces:
+      ```bash
+      export DEBUG=app:startup
+      ```
+   - To enable multiple namespaces:
+   ```bash
+      export DEBUG=app:startup,app:db
+      ```
+      - To enable all debug logs:
+   ```bash
+      export DEBUG=*
+      ```
 ### 8. Best Practices:
 - Followed RESTful API design principles.
 - Used proper HTTP status codes for responses.
