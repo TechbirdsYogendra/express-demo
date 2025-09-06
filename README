@@ -27,6 +27,17 @@
 ### 7. Linking HTML Pages:
 - Linked `index.html` with `courses.html` to navigate between the home screen and the courses list.
 
+### 8. Managing Environment Variables:
+- Used the `config` package to manage environment-specific configurations.
+- Created a `custom-environment-variables.json` file to map environment variables to configuration properties.
+- Example:
+  ```json
+  {
+      "mail": {
+          "password": "app_mail_password"
+      }
+  }
+
 ### 8. Best Practices:
 - Followed RESTful API design principles.
 - Used proper HTTP status codes for responses.

@@ -1,5 +1,6 @@
 import helmet from "helmet";
 import morgan from "morgan";
+import config from "config";
 import express from "express";
 import Joi from "joi";
 import log from "./logger.js";
@@ -40,6 +41,24 @@ if (app.get("env") === "development") {
     app.use(morgan("tiny"));
     console.log("Morgan enabled...");
   }
+
+// Configuration
+// Configuration can be set in JSON files in the config folder
+// Default file is default.json
+// You can create custom configuration files for different environments
+// For example, create a file named production.json for production environment
+// To run the app in production mode, set the environment variable NODE_ENV to 'production'
+// In Linux/Mac: export NODE_ENV=production
+// To run the app in development mode, set the environment variable NODE_ENV to 'development'
+// export NODE_ENV=development
+// Accessing configuration values
+console.log("Application Name: " + config.get("name"));
+console.log("Mail Server: " + config.get("mail.host"));
+//  To set the mail password, we need to set an environment variable
+//  In Linux/Mac: export app_mail_password=your_password
+//  Accessing the mail password from environment variable
+console.log("Mail Password: " + config.get("mail.password")); // This will throw an error if the password is not set in environment variables
+
 
 // Helmet helps you secure your Express apps by setting various HTTP headers
 app.use(helmet());

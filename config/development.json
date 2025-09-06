@@ -1,0 +1,16 @@
+{
+    "name": "Express Demo Development",
+    "mail": {
+        "host": "dev.mail.io"
+    },
+    "version": "1.0.0",
+    "description": "A simple Express application",
+    "author": "Yogendra Singh",
+    "license": "MIT",
+    "port": 3000,
+    "db": {
+        "host": "localhost",
+        "port": 27017,
+        "name": "express-demo"
+    }
+}
