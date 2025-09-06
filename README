@@ -38,7 +38,6 @@
       }
   }
 
-### 9. debug use cases
 ### 9. Debugging the Application:
 - Used the `debug` package for debugging the application.
 - Created two namespaces for debugging:
@@ -56,6 +55,10 @@
       - To enable all debug logs:
    ```bash
       export DEBUG=*
+      ```
+  - To set environment valiable while we are running the app:
+   ```bash
+      DEBUG=app:startup nodemon app.js
       ```
 ### 8. Best Practices:
 - Followed RESTful API design principles.
