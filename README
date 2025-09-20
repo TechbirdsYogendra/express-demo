@@ -60,6 +60,11 @@
    ```bash
       DEBUG=app:startup nodemon app.js
       ```
+### Async Programming
+ - Callback functions
+ - Promises, Promise all and Promise race.
+ - Async/await
+
 ### 8. Best Practices:
 - Followed RESTful API design principles.
 - Used proper HTTP status codes for responses.
